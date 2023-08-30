@@ -2776,6 +2776,13 @@ case "${target}" in
 	subdirs="$subdirs epiphany"
 	config_testsuite=true
 	;;
+	i[3-7]86-toy-*)
+	ac_config_files="$ac_config_files toyos/Makefile"
+
+	subdirs="$subdirs toyos"
+	config_libnosys=false
+	config_testsuite=false
+	;;
   i[3456]86-*-elf* | i[3456]86-*-coff*)
 	ac_config_files="$ac_config_files i386/Makefile"
 
@@ -6048,6 +6055,7 @@ do
   case $ac_config_target in
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "epiphany/Makefile") CONFIG_FILES="$CONFIG_FILES epiphany/Makefile" ;;
+    "toyos/Makefile") CONFIG_FILES="$CONFIG_FILES toyos/Makefile" ;;
     "i386/Makefile") CONFIG_FILES="$CONFIG_FILES i386/Makefile" ;;
     "m32r/Makefile") CONFIG_FILES="$CONFIG_FILES m32r/Makefile" ;;
     "m68hc11/Makefile") CONFIG_FILES="$CONFIG_FILES m68hc11/Makefile" ;;

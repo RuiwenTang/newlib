@@ -62,6 +62,12 @@ case "${target}" in
 	subdirs="$subdirs epiphany"
 	config_testsuite=true
 	;;
+	i[[3-7]]86-toy-*)
+	AC_CONFIG_FILES([toyos/Makefile])
+	subdirs="$subdirs toyos"
+	config_libnosys=false
+	config_testsuite=false
+	;;
   i[[3456]]86-*-elf* | i[[3456]]86-*-coff*)
 	AC_CONFIG_FILES([i386/Makefile])
 	subdirs="$subdirs i386"
