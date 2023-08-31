@@ -583,7 +583,7 @@ case "${host}" in
 	sys_dir=z8ksim
 	;;
 	i[3-7]86-toy-*)
-	  newlib_cflags="${newlib_cflags} -DREENTRANT_SYSCALL_PROVIDED -m32"
+	  newlib_cflags="${newlib_cflags} -m32"
 	  syscall_dir=syscalls
 	  sys_dir=
 	;;
