@@ -24,7 +24,8 @@ PROVIDE (__mem_start = phys);
 PROVIDE (___mem_start = phys);
 SECTIONS
 {	
- .text phys : AT(phys) {
+  . = phys;
+  .text : {
      _ftext = . ;
     *(.init)
      eprol  =  .;
@@ -48,7 +49,7 @@ SECTIONS
     PROVIDE(_etext  =  .);
     PROVIDE(__etext  =  .);
   }
-  . = ALIGN(PAGE_SIZE);
+  . = .;
   .rdata : {
     *(.rdata)
   }
@@ -63,7 +64,6 @@ SECTIONS
     PROVIDE (__EH_FRAME_END__ = .);
   }
   _fdata = ALIGN(16);
-  . = ALIGN(PAGE_SIZE);
   .data : {
     *(.data)
     *(.gcc_except_table)

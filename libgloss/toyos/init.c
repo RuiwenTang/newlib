@@ -1,8 +1,9 @@
 
-#include "config.h"
 #include <_ansi.h>
 #include <_syslist.h>
 #include <errno.h>
+
+#include "config.h"
 
 #undef errno
 
@@ -11,31 +12,30 @@ extern int errno;
 typedef void (*ctp)();
 
 void __do_global_ctors() {
-  extern int __CTOR_LIST__;
-  int *c = &__CTOR_LIST__;
+  // extern int __CTOR_LIST__;
+  // int *c = &__CTOR_LIST__;
 
-  c++;
+  // c++;
 
-  while (*c) {
-    ctp d = (ctp)*c;
-    (d)();
-    c++;
-  }
+  // while (*c) {
+  //   ctp d = (ctp)*c;
+  //   (d)();
+  //   c++;
+  // }
 }
 
 void __do_global_dtors() {
-  extern int __DTOR_LIST__;
-  int *c = &__DTOR_LIST__;
-  int *cp = c;
+  // extern int __DTOR_LIST__;
+  // int *c = &__DTOR_LIST__;
+  // int *cp = c;
 
-  c++;
-  while (*c)
-    c++;
+  // c++;
+  // while (*c) c++;
 
-  c--;
-  while (c > cp) {
-    ctp d = (ctp)*c;
-    (*d)();
-    c--;
-  }
+  // c--;
+  // while (c > cp) {
+  //   ctp d = (ctp)*c;
+  //   (*d)();
+  //   c--;
+  // }
 }
