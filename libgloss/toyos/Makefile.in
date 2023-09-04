@@ -54,7 +54,7 @@ TOYOS_BSP = libtoyos.a
 TOYOS_OBJS = 	chown.o errno.o fork.o gettod.o kill.o open.o sbrk.o times.o write.o \
            		close.o execve.o fstat.o init.o link.o read.o stat.o unlink.o \
            		environ.o exit.o getpid.o isatty.o lseek.o readlink.o symlink.o wait.o \
-	   					dup.o dup2.o
+	   					dup.o dup2.o syscall.o
 
 #### Host specific Makefile fragment comes in here.
 @host_makefile_frag@

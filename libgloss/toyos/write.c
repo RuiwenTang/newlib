@@ -1,16 +1,21 @@
-#include "config.h"
 #include <_ansi.h>
 #include <_syslist.h>
 #include <errno.h>
+
+#include "config.h"
+#include "syscall.h"
 
 #undef errno
 
 extern int errno;
 
 int _write(int file, char *ptr, int len) {
-  int ret = -1;
+  int ret = toyos_syscall3(__NR_write, file, (u_int32_t)ptr, len);
 
-  errno = ENOSYS;
+  if (ret < 0) {
+    errno = -ret;
+    ret = -1;
+  }
 
-  return 0;
+  return ret;
 }
