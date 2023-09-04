@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+#define __NR_exit 0
 #define __NR_write 1
 
 int32_t toyos_syscall0(u_int32_t arg0);

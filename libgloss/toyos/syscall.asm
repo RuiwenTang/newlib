@@ -1,4 +1,14 @@
 
+; int32_t toyos_syscall0(u_int32_t arg0)
+global toyos_syscall0
+toyos_syscall0:
+    ; arg0 in eax
+    mov eax, [esp + 4]
+
+    int 0x80
+
+    ret
+
 ;int32_t toyos_syscall2(u_int32_t arg0, u_int32_t arg1, u_int32_t arg2);
 global toyos_syscall2
 toyos_syscall2:

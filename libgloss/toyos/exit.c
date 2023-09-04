@@ -4,15 +4,13 @@
 #include <errno.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 extern int errno;
 
 void _exit(int fildes) {
-  int ret = -1;
-
-  // TODO support close syscall
-  errno = ENOSYS;
+  toyos_syscall0(__NR_exit);
 
   for (;;)
     ;
