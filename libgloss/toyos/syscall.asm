@@ -29,13 +29,13 @@ toyos_syscall3:
     push edx
 
     ; arg0 in eax
-    mov eax, [esp + 12]
+    mov eax, [esp + 16]
     ; arg1 in ebx
-    mov ebx, [esp + 16]
+    mov ebx, [esp + 20]
     ; arg2 in ecx
-    mov ecx, [esp + 20]
+    mov ecx, [esp + 24]
     ; arg3 in edx
-    mov edx, [esp + 24]
+    mov edx, [esp + 28]
 
     int 0x80
 

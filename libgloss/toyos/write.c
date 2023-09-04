@@ -9,7 +9,7 @@
 
 extern int errno;
 
-int _write(int file, char *ptr, int len) {
+int write(int file, char *ptr, int len) {
   int ret = toyos_syscall3(__NR_write, file, (u_int32_t)ptr, len);
 
   if (ret < 0) {
