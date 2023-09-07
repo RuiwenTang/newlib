@@ -16,7 +16,7 @@ void *sbrk(int incr) {
 
   if (ret < 0x80000000) {
     ret = 0;
-    errno = ENOSYS;
+    errno = ENOMEM;
   }
   return (void *)ret;
 }
