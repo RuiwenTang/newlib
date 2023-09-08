@@ -12,16 +12,21 @@ extern int errno;
 typedef void (*ctp)();
 
 void __do_global_ctors() {
-  // extern int __CTOR_LIST__;
-  // int *c = &__CTOR_LIST__;
+  extern int __CTOR_LIST__;
 
-  // c++;
+  if (__CTOR_LIST__ == 0) {
+    return;
+  }
 
-  // while (*c) {
-  //   ctp d = (ctp)*c;
-  //   (d)();
-  //   c++;
-  // }
+  int *c = &__CTOR_LIST__;
+
+  c++;
+
+  while (*c) {
+    ctp d = (ctp)*c;
+    (d)();
+    c++;
+  }
 }
 
 void __do_global_dtors() {
