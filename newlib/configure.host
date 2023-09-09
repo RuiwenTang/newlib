@@ -582,7 +582,7 @@ case "${host}" in
   z8k-*-coff)
 	sys_dir=z8ksim
 	;;
-	i[3-7]86-toy-*)
+	i[3-7]86-*-toy*)
 	  newlib_cflags="${newlib_cflags} -m32"
 	  syscall_dir=syscalls
 	  sys_dir=

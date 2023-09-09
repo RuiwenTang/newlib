@@ -2776,7 +2776,7 @@ case "${target}" in
 	subdirs="$subdirs epiphany"
 	config_testsuite=true
 	;;
-	i[3-7]86-toy-*)
+	i[3-7]86-*-toy*)
 	ac_config_files="$ac_config_files toyos/Makefile"
 
 	subdirs="$subdirs toyos"
