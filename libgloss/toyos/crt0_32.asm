@@ -2,29 +2,17 @@
 [BITS 32]
 SECTION .text
 global _start
-extern __bss_start
-extern __bss_end
 extern main
 extern environ
 extern __env
-extern __do_global_dtors
-extern __do_global_ctors
-extern hardware_init_hook
-extern software_init_hook
 extern atexit
 extern exit
 
+extern _init
+extern _fini
 
 
 _start:
-  ; init BSS
-  ; reset to zero from __bss_start to __bss_end
-  mov edi, __bss_start
-  mov ecx, __bss_end
-  sub ecx, edi
-  xor eax, eax
-  rep
-
   ; call init hooks
   ; lea eax, [hardware_init_hook]
   ; cmp eax, 0
@@ -37,16 +25,15 @@ _start:
   ; call eax
 L2:
   ; register a function to be called at normal process termination
-  push __do_global_dtors
+  push _fini
   call atexit
   pop eax
-
-  ; call init function
-  call __do_global_ctors
 
   ; set default environment
   mov eax, environ
   mov dword [eax], __env
+
+  call _init
 L4:
   ; arguments are already on the stack
   ; call the user's main function

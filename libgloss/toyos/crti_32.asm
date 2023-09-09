@@ -14,3 +14,5 @@ global _fini
 _fini:
     push    ebp
     mov     ebp, esp
+
+SECTION .note.GNU-stack noalloc noexec nowrite progbits

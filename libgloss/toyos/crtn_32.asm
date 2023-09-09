@@ -8,3 +8,5 @@ SECTION .init
 SECTION .fini
     pop ebp
     ret
+
+SECTION .note.GNU-stack noalloc noexec nowrite progbits
