@@ -50,8 +50,6 @@ OBJCOPY = `if [ -f ${objroot}/../binutils/objcopy ] ; \
 
 
 CRT0 = crt0_$(BIT).o
-CRTI = crti_$(BIT).o
-CRTN = crtn_$(BIT).o
 TOYOS_BSP = libtoyos.a
 TOYOS_OBJS = 	chown.o errno.o fork.o gettod.o kill.o open.o sbrk.o times.o write.o \
            		close.o execve.o fstat.o init.o link.o read.o stat.o unlink.o \
@@ -66,7 +64,7 @@ INCLUDES += -I$(srcdir)/include
 %.o : %.asm
 	$(NASM) $(NASMFLAGS) -o $@ $<
 
-all: $(CRT0) $(CRTI) $(CRTN) $(TOYOS_BSP)
+all: $(CRT0) $(TOYOS_BSP)
 
 $(TOYOS_BSP): $(TOYOS_OBJS)
 	$(AR) $(ARFLAGS) $@ $(TOYOS_OBJS)
@@ -74,8 +72,6 @@ $(TOYOS_BSP): $(TOYOS_OBJS)
 
 install: $($(CPU)_INSTALL)
 	$(INSTALL_DATA) $(CRT0) $(DESTDIR)$(tooldir)/lib${MULTISUBDIR}/crt0.o
-	$(INSTALL_DATA) $(CRTI) $(DESTDIR)$(tooldir)/lib${MULTISUBDIR}/crti.o
-	$(INSTALL_DATA) $(CRTN) $(DESTDIR)$(tooldir)/lib${MULTISUBDIR}/crtn.o
 	$(INSTALL_PROGRAM) $(TOYOS_BSP) $(DESTDIR)$(tooldir)/lib${MULTISUBDIR}
 	$(INSTALL_DATA) ${srcdir}/link$(BIT).ld $(DESTDIR)$(tooldir)/lib${MULTISUBDIR}/link.ld
 
