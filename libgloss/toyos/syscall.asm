@@ -9,6 +9,22 @@ toyos_syscall0:
 
     ret
 
+; int32_t toyos_syscall1(u_int32_t arg0, u_int32_t arg1);
+global toyos_syscall1
+toyos_syscall1:
+    ; save ebx
+    push ebx
+    ; arg0 in eax
+    mov eax, [esp + 8]
+    ; arg1 in ebx
+    mov ebx, [esp + 12]
+
+    int 0x80
+
+    ; restore ebx
+    pop ebx
+    ret
+
 ;int32_t toyos_syscall2(u_int32_t arg0, u_int32_t arg1, u_int32_t arg2);
 global toyos_syscall2
 toyos_syscall2:
@@ -17,11 +33,11 @@ toyos_syscall2:
     push ecx
 
     ; arg0 in eax
-    mov eax, [esp + 8]
+    mov eax, [esp + 12]
     ; arg1 in ebx
-    mov ebx, [esp + 12]
+    mov ebx, [esp + 16]
     ; arg2 in ecx
-    mov ecx, [esp + 16]
+    mov ecx, [esp + 20]
 
     int 0x80
 

@@ -10,6 +10,9 @@ extern "C" {
 #define __NR_exit 0
 #define __NR_write 1
 #define __NR_mmap 2
+#define __NR_unmmap 3
+#define __NR_open 4
+#define __NR_close 5
 
 int32_t toyos_syscall0(u_int32_t arg0);
 int32_t toyos_syscall1(u_int32_t arg0, u_int32_t arg1);

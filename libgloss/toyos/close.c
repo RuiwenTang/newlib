@@ -5,15 +5,18 @@
 #include <errno.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 extern int errno;
 
 int close(int fildes) {
-  int ret = -1;
+  int ret = toyos_syscall1(__NR_close, fildes);
 
-  // TODO support close syscall
-  errno = ENOSYS;
+  if (ret) {
+    errno = -ret;
+    ret = -1;
+  }
 
   return ret;
 }
