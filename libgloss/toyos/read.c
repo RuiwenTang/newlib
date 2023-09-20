@@ -4,15 +4,18 @@
 #include <errno.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 
 extern int errno;
 
 int read(int file, char* ptr, int len) {
-  int ret = -1;
+  int ret = toyos_syscall3(__NR_read, file, (u_int32_t)ptr, len);
 
-  errno = ENOSYS;
+  if (ret < 0) {
+    errno = ENOSYS;
+  }
 
   return ret;
 }
