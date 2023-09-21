@@ -4,15 +4,18 @@
 #include <errno.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 
 extern int errno;
 
 int lseek(int file, int ptr, int dir) {
-  int ret = -1;
+  int ret = toyos_syscall3(__NR_seek, file, ptr, dir);
 
-  errno = ENOSYS;
+  if (ret < 0) {
+    errno = ENOSYS;
+  }
 
   return ret;
 }
