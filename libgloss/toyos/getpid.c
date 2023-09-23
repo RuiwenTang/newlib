@@ -4,13 +4,13 @@
 #include <errno.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 extern int errno;
 
 int getpid() {
-  int ret;
-  ret = 1;
+  int ret = toyos_syscall0(__NR_getpid);
   if (ret < 0) {
     errno = -ret;
     ret = -1;
