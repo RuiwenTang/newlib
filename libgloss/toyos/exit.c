@@ -10,7 +10,7 @@
 extern int errno;
 
 void _exit(int fildes) {
-  toyos_syscall0(__NR_exit);
+  toyos_syscall1(__NR_exit, fildes);
 
   for (;;)
     ;

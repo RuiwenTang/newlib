@@ -4,17 +4,16 @@
 #include <reent.h>
 
 #include "config.h"
+#include "syscall.h"
 
 #undef errno
 extern int errno;
 
 int wait(int *status) {
-  int ret;
+  int ret = toyos_syscall1(__NR_wait, (u_int32_t)status);
 
-  /* create a child process */
-  ret = -1;
   if (ret < 0) {
-    errno = -ret;
+    errno = ENOSYS;
     ret = -1;
   }
 

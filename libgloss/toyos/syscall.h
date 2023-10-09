@@ -17,6 +17,7 @@ extern "C" {
 #define __NR_seek 7
 #define __NR_getpid 8
 #define __NR_fork 9
+#define __NR_wait 10
 
 int32_t toyos_syscall0(u_int32_t arg0);
 int32_t toyos_syscall1(u_int32_t arg0, u_int32_t arg1);
